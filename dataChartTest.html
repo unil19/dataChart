@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>datavisual</title>
+	<link rel="stylesheet" href="./css/dataChart.css" />
+	<script src="./js/dataChart.js"></script>
+	<style>
+		body,h2{padding: 0;margin: 0}
+		#set{width: 200px;height: 300px; background: #2b2b37;border: 1px solid gray; line-height: 40px;padding:10px 40px;margin-top: 50px; }
+		h2,span{color: white}
+		#space{position: absolute;left: 300px;top:0;}
+		#oText{height: 30px;width: 400px; border: 1px solid orange;outline: none;line-height: 30px;font-size: 16px;}
+		#oBtn{border:none; padding:0; outline: none; width: 60px; height: 30px; background: #449c45; color: white}
+		#oBox{width: 800px;height: 600px; background: #fff;font-family: 宋体;position: absolute;left: 300px;top:0;}
+	</style>
+	<script>
+		data={
+				"title":"2015年国产手机销量",
+				"unit":"万台",
+				"xtitle":"公司",
+				"ytitle":"销售量",
+				"dataDetail":[{"x":"华为","y":"10000"},{"x":"小米","y":"7000"},{"x":"联想","y":"7300"},{"x":"oppo","y":"4000"},{"x":"魅族","y":"2000"},{"x":"TCL","y":"8000"},{"x":"金立","y":"3000"}]
+			}
+		data2={
+			"title":"21世纪中美两国GDP数据",
+			"unit":"万亿美元",
+			"xtitle":"年份",
+			"ytitle":"GDP",
+			"dataDetail":{
+				"China":[{"x":"2000","y":"1.20"},{"x":"2001","y":"1.32"},{"x":"2002","y":"1.45"},{"x":"2003","y":"1.64"},{"x":"2004","y":"1.93"},{"x":"2005","y":"2.26"},{"x":"2006","y":"2.71"},{"x":"2007","y":"3.49"},{"x":"2008","y":"4.52"},{"x":"2009","y":"4.99"},{"x":"2010","y":"5.93"},{"x":"2011","y":"7.32"},{"x":"2012","y":"8.23"},{"x":"2013","y":"9.24"}],
+				"USA":[{"x":"2000","y":"10.29"},{"x":"2001","y":"10.63"},{"x":"2002","y":"10.98"},{"x":"2003","y":"11.51"},{"x":"2004","y":"12.28"},{"x":"2005","y":"13.10"},{"x":"2006","y":"13.86"},{"x":"2007","y":"14.48"},{"x":"2008","y":"14.72"},{"x":"2009","y":"14.42"},{"x":"2010","y":"14.96"},{"x":"2011","y":"15.53"},{"x":"2012","y":"16.24"},{"x":"2013","y":"16.80"}]
+			}
+		}
+		window.onload=function(){
+			oBtn.onclick=function(){
+				oBox.innerHTML="";
+				switch(oMode.options.selectedIndex){
+					case 0:
+						var oDav=new dateVisual(oBox,"barchart",data)
+						break;
+					case 1:
+						var oDav=new dateVisual(oBox,"linechart",data2)
+						break;
+					case 2:
+						var oDav=new dateVisual(oBox,"piechart",data)
+						break;
+				};
+			}
+		}
+	</script>
+</head>
+<body >
+	<div id="set">
+		<h2>数据图表组件演示</h2>
+		<span>模式选择</span>
+		<select name="" id="oMode">
+			<option value="0">柱状图</option>
+			<option value="1">折线图</option>
+			<option value="2">饼图</option>
+		</select><br/>
+		<input type="button" id="oBtn" value="生成图表" />
+	</div>
+	<div id="oBox"></div>
+</body>
+</html>
